@@ -1,0 +1,40 @@
+package com.example.demo.student;
+
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class StudentService {
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @Autowired
+    ObjectMapper objectMapper;
+
+    public List<Student> getListOfStudents() {
+        return studentRepository.findAll();
+    }
+
+    public Student saveStudent(JsonNode jsonNode) {
+        try {
+            Student student = objectMapper.convertValue(jsonNode, Student.class);
+
+            return studentRepository.save(student);
+        }catch (Exception exception ){
+            System.out.println(exception);
+        }
+
+        return null;
+    }
+
+    public Student getStudent(long id) {
+    return studentRepository.getReferenceById(id);
+    }
+}
