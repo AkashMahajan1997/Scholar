@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -15,7 +16,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +28,7 @@ public class Student {
 
     private Address address;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student",fetch =FetchType.EAGER)
     private List<University> universities;
 
 }

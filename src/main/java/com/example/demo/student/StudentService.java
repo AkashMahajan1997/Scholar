@@ -1,6 +1,7 @@
 package com.example.demo.student;
 
 
+import com.example.demo.shared.Annotation.VerifyAge;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Setter;
@@ -35,6 +36,12 @@ public class StudentService {
     }
 
     public Student getStudent(long id) {
-    return studentRepository.getReferenceById(id);
+    return studentRepository.findById(id).get();
     }
+
+    @VerifyAge
+    public String verifyAge() {
+    return "you are eligible to apply ";
+    }
+
 }

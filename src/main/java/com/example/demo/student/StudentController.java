@@ -3,6 +3,7 @@ package com.example.demo.student;
 import com.example.demo.shared.Annotation.VerifyAge;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,10 +25,13 @@ public class StudentController {
         return studentService.saveStudent(student);
     }
     @GetMapping("/verify-age")
-    @VerifyAge
     public String verifyAge(@RequestParam int age){
-        return "You are eligible to apply ";
+        return studentService.verifyAge();
+    }
 
-
+    @GetMapping("/student/{id}")
+    @Cacheable(value = "student",key ="#id")
+    public Student getStudent(@PathVariable(value = "id") long id){
+        return studentService.getStudent(id);
     }
 }

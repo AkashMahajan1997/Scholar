@@ -1,15 +1,12 @@
 package com.example.demo.shared;
 
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.io.Serializable;
 
 @Embeddable
 @Data
-public class Address {
+public class Address implements Serializable {
 
     String houseNumber;
     String sector;
