@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,6 +44,9 @@ public class StudentService {
     @VerifyAge
     public String verifyAge() {
     return "you are eligible to apply ";
+    }
+    public Page<Student> getStudentListBasedOnPage(int pageNumber, int numberOfElementPerPage){
+        return studentRepository.findAll(PageRequest.of(pageNumber,numberOfElementPerPage));
     }
 
 }
