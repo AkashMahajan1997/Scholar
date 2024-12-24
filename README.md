@@ -1,4 +1,4 @@
-<b>This is a spring boot project in which student can apply in many university</b>
+<b>This is a spring boot project in which students can apply to many university</b>
 
 Tech Stack used:- 
 1) Spring Boot
